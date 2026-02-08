@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
 .screenshot-safe {
   background: white !important;
   backdrop-filter: none !important;
