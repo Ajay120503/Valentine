@@ -181,21 +181,26 @@ export default function App() {
 
         {/* 💖 Buttons */}
         {!accepted && (
-          <div className="relative mt-8 h-24 flex justify-center items-center gap-6">
+          <div className="relative mt-8 h-28 flex items-center justify-center gap-6">
+            {/* YES Button */}
             <motion.button
               whileTap={{ scale: 0.9 }}
               onClick={handleYes}
-              className="px-8 py-3 rounded-full bg-pink-600 text-white font-bold shadow-xl"
+              className="z-10 px-8 py-3 rounded-full bg-pink-600 text-white font-bold shadow-xl"
             >
               YES 💖
             </motion.button>
 
+            {/* NO Button */}
             <motion.button
               animate={noPos}
-              transition={{ type: "spring" }}
+              transition={{ type: "spring", stiffness: 120 }}
               onMouseEnter={moveNo}
               onTouchStart={moveNo}
-              className="absolute px-8 py-3 rounded-full bg-gray-200 font-bold shadow-lg"
+              className="z-10 px-8 py-3 rounded-full bg-gray-200 font-bold shadow-lg"
+              style={{
+                transform: `translate(${noPos.x}px, ${noPos.y}px)`,
+              }}
             >
               NO 🙈
             </motion.button>
