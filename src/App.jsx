@@ -231,30 +231,77 @@ export default function App() {
         </AnimatePresence>
       </motion.div>
 
-      {/* 🎁 Popup */}
+      {/* 🎁 Romantic Proposal Popup */}
       <AnimatePresence>
         {showPopup && (
-          <motion.div className="fixed inset-0 bg-black/60 flex items-center justify-center z-20">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-20 flex items-center justify-center bg-black/70 backdrop-blur-sm px-4"
+          >
             <motion.div
-              initial={{ scale: 0.6 }}
-              animate={{ scale: 1 }}
-              className="bg-white rounded-3xl p-8 text-center max-w-sm w-[90%]"
+              initial={{ y: 60, scale: 0.85, opacity: 0 }}
+              animate={{ y: 0, scale: 1, opacity: 1 }}
+              exit={{ y: 60, scale: 0.85, opacity: 0 }}
+              transition={{ type: "spring", damping: 18 }}
+              className="relative w-full max-w-sm rounded-4xl bg-white p-8 text-center shadow-2xl"
             >
-              <div className="text-6xl mb-4">💍</div>
-              <h2 className="text-3xl font-bold text-pink-600">
-                She said YES! 🎉
-              </h2>
-              <p className="mt-3 text-gray-700">This moment is forever 💕</p>
+              {/* Glow Ring */}
+              <motion.div
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ duration: 1.6, repeat: Infinity }}
+                className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-pink-100 shadow-inner"
+              >
+                <span className="text-5xl">💍</span>
+              </motion.div>
 
-              <button
+              {/* Title */}
+              <h2 className="text-3xl font-extrabold text-pink-600 tracking-tight">
+                You said YES! 🎉
+              </h2>
+
+              {/* Subtitle */}
+              <p className="mt-3 text-gray-600 text-sm leading-relaxed">
+                This moment is captured forever.
+                <br />
+                Thank you for making my world brighter 💕
+              </p>
+
+              {/* Divider */}
+              <div className="my-6 h-px w-full bg-linear-to-r from-transparent via-pink-300 to-transparent" />
+
+              {/* CTA Button */}
+              <motion.button
+                whileTap={{ scale: 0.92 }}
+                whileHover={{ scale: 1.05 }}
                 onClick={async () => {
                   await captureScreenshot();
                   setShowPopup(false);
                 }}
-                className="mt-6 px-6 py-3 rounded-full bg-pink-500 text-white font-semibold"
+                className="mx-auto cursor-pointer flex items-center justify-center gap-2 rounded-full bg-linear-to-r from-pink-500 to-rose-500 px-8 py-3 font-semibold text-white shadow-lg"
               >
                 Save Memory 📸
-              </button>
+              </motion.button>
+
+              {/* Soft Hearts */}
+              <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-4xl">
+                {[...Array(6)].map((_, i) => (
+                  <motion.span
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: [0, 1, 0], y: -40 }}
+                    transition={{
+                      duration: 4,
+                      delay: i * 0.6,
+                      repeat: Infinity,
+                    }}
+                    className="absolute bottom-4 left-1/2 -translate-x-1/2 text-pink-300"
+                  >
+                    💗
+                  </motion.span>
+                ))}
+              </div>
             </motion.div>
           </motion.div>
         )}
