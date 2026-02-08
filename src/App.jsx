@@ -93,7 +93,7 @@ export default function App() {
       <audio ref={ringSoundRef} src="/ring-click.mp3" />
 
       {/* 🌸 Floating Hearts */}
-      <div className="absolute z-50 inset-0 pointer-events-none overflow-hidden">
+      <div className="absolute z-30 inset-0 pointer-events-none overflow-hidden">
         {Array.from({ length: 24 }).map((_, i) => {
           const Icon =
             heartIcons[Math.floor(Math.random() * heartIcons.length)];
@@ -186,9 +186,10 @@ export default function App() {
             <motion.button
               whileTap={{ scale: 0.9 }}
               onClick={handleYes}
-              className="z-10 px-8 py-3 cursor-pointer rounded-full bg-pink-600 text-white font-bold shadow-xl"
+              className="z-10 flex gap-2 justify-center items-center px-8 py-3 text-xl cursor-pointer rounded-full bg-pink-600 text-white font-bold shadow-xl"
             >
-              YES 💖
+              <span>YES</span>
+              <Heart />
             </motion.button>
 
             {/* NO Button */}
@@ -197,7 +198,7 @@ export default function App() {
               transition={{ type: "spring", stiffness: 120 }}
               onMouseEnter={moveNo}
               onTouchStart={moveNo}
-              className="z-10 px-8 py-3 cursor-pointer rounded-full bg-gray-200 font-bold shadow-lg"
+              className="z-10 px-8 py-3 text-xl cursor-pointer rounded-full bg-gray-200 font-bold shadow-lg"
               style={{
                 transform: `translate(${noPos.x}px, ${noPos.y}px)`,
               }}
@@ -238,7 +239,7 @@ export default function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-20 flex items-center justify-center bg-black/70 backdrop-blur-sm px-4"
+            className="fixed inset-0 z-40 flex items-center justify-center bg-black/70 backdrop-blur-sm px-4"
           >
             <motion.div
               initial={{ y: 60, scale: 0.85, opacity: 0 }}
