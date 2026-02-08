@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+.screenshot-safe {
+  background: white !important;
+  backdrop-filter: none !important;
+  filter: none !important;
+}
